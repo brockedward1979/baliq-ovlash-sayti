@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rassomchilik San'ati — Mo'jizalar Dunyosi</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent: #f53a0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5, #d946ef, #f59e0b);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            border-bottom: 2px solid #334155;
+            padding-bottom: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border: 1px solid #334155;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: #38bdf8;
+        }
+
+        .canvas-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #334155;
+            margin-bottom: 3rem;
+        }
+
+        .tools {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .tools label {
+            font-weight: bold;
+            color: var(--text-muted);
+        }
+
+        .tools input[type="color"] {
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            background: none;
+        }
+
+        .tools input[type="range"] {
+            cursor: pointer;
+        }
+
+        .btn {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #dc2626;
+        }
+
+        canvas {
+            background-color: #ffffff;
+            border-radius: 8px;
+            cursor: crosshair;
+            max-width: 100%;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #020617;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Rassomchilik San'ati</h1>
+        <p>Mo'qalam, ranglar va tuyg'ularning uyg'unligi</p>
+    </header>
+
+    <container>
+        <h2 class="section-title">Mashhur Yo'nalishlar</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Realizm</h3>
+                <p>Borliqni, tabiatni va insonlarni qanday bo'lsa shunday aniq, oshirmasdan tasvirlash san'ati. Rassom
+                    har bir detalga va yorug'lik o'yiniga alohida e'tibor qaratadi.</p>
+            </div>
+            <div class="card">
+                <h3>Impressionizm</h3>
+                <p>Lahzalik taassurot, yorug mezonlar va ranglar jilosini aks ettirish uslubi. Keng tarqalgan tezkor
+                    surtmalar (stroke) orqali hayotiylik va harakat hissi beriladi.</p>
+            </div>
+            <div class="card">
+                <h3>Abstraktsionizm</h3>
+                <p>Aniq ob'ektlarni rad etib, shakllar, chiziqlar va ranglar kompozitsiyasi orqali ichki hissiyot va
+                    g'oyalarni erkin ifodalash yo'nalishi.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Kichik Raqamli Molbert</h2>
+        <div class="canvas-container">
+            <div class="tools">
+                <label for="colorPicker">Rang:</label>
+                <input type="color" id="colorPicker" value="#000000">
+
+                <label for="brushSize">Qalam qalinligi:</label>
+                <input type="range" id="brushSize" min="1" max="30" value="5">
+
+                <button class="btn" id="clearBtn">Tozalash</button>
+            </div>
+            <canvas id="paintCanvas" width="750" height="400"></canvas>
+        </div>
+    </container>
+
+    <footer>
+        <p>&copy; 2026 Rassomchilik haqida veb-sayt. Rangli ijod tili.</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        const brushSize = document.getElementById('brushSize');
+        const clearBtn = document.getElementById('clearBtn');
+
+        let painting = false;
+
+        function startPosition(e) {
+            painting = true;
+            draw(e);
+        }
+
+        function finishedPosition() {
+            painting = false;
+            ctx.beginPath();
+        }
+
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+
+        function draw(e) {
+            if (!painting) return;
+
+            const pos = getMousePos(e);
+
+            ctx.lineWidth = brushSize.value;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = colorPicker.value;
+
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+        }
+
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', finishedPosition);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseleave', finishedPosition);
+
+        clearBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+    </script>
+</body>
+
+</html>
